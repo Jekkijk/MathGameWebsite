@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Leaderboard</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Score</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboard">
+                
+            </tbody>
+        </table>
+        <button onclick="location.href='index.html'">Back to Game</button>
+    </div>
+
+    <script>
+        
+        async function fetchLeaderboard() {
+            try {
+                const response = await fetch("fetch_leaderboard.php");
+                if (!response.ok) throw new Error("Failed to load leaderboard.");
+                const leaderboard = await response.json();
+
+                const tbody = document.getElementById("leaderboard");
+                leaderboard.forEach((entry, index) => {
+                    const row = `<tr>
+                        <td>${index + 1}</td>
+                        <td>${entry.name}</td>
+                        <td>${entry.score}</td>
+                        <td>${entry.created_at}</td>
+                    </tr>`;
+                    tbody.innerHTML += row;
+                });
+            } catch (error) {
+                console.error(error);
+                alert("An error occurred while fetching the leaderboard.");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchLeaderboard);
+    </script>
+</body>
+</html>

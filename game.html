@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Fun Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Math Fun Quiz</h1>
+        <div class="scoreboard">
+            <span>SCORE: <span id="score">0</span></span>
+            <span>TIME: <span id="time">30</span>s</span>
+        </div>
+
+        
+        <div id="quiz-content">
+            <div id="question-container">
+                <img id="question-image" alt="Question" src="">
+            </div>
+
+            <input type="text" id="answer" placeholder="Enter your answer">
+            <div class="buttons">
+                <button onclick="submitAnswer()">Submit</button>
+                <button onclick="fetchQuestion()">Next Question</button>
+                <button onclick="location.href='index.html'">Exit</button>
+            </div>
+        </div>
+
+        
+        <div id="game-over" class="game-over" style="display: none;">
+            <h2>Game Over !</h2>
+            <p>Your final score is: <span id="final-score"></span></p>
+            <button onclick="saveScore()">Leaderboard</button>
+            <button onclick="resetGame()">Play Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
